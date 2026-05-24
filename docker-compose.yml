@@ -1,0 +1,47 @@
+services:
+  web:
+    build: .
+    ports:
+      - "80:80"
+    command: sh -c "rm -f tmp/pids/server.pid && bin/rails tailwindcss:watch & bundle exec thrust bin/rails server -b 0.0.0.0"
+    volumes:
+      - .:/rails
+    environment:
+      RAILS_ENV: development
+      DB_HOST: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:16-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: chronos_hub_development
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  jobs:
+    build: .
+    command: bin/jobs
+    volumes:
+      - .:/rails
+    environment:
+      RAILS_ENV: development
+      DB_HOST: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
