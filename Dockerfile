@@ -20,5 +20,8 @@ RUN bundle install
 
 COPY . .
 
+# 本番用アセットをビルド時にコンパイル（SECRET_KEY_BASE_DUMMY=1でキー不要にする）
+RUN RAILS_ENV=production SECRET_KEY_BASE_DUMMY=1 bundle exec rails assets:precompile
+
 EXPOSE 80
 CMD ["bundle", "exec", "thrust", "bin/rails", "server", "-b", "0.0.0.0"]
