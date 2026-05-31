@@ -1,0 +1,2 @@
+#!/bin/sh
+kamal app exec 'bin/rails db:migrate'
