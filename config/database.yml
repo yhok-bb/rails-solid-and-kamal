@@ -54,5 +54,3 @@ test:
 production:
   <<: *default
   database: chronos_hub_production
-  username: chronos_hub
-  password: <%= ENV["CHRONOS_HUB_DATABASE_PASSWORD"] %>
