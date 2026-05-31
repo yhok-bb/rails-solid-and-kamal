@@ -1,0 +1,37 @@
+# アプリ名。Kamal Proxyがコンテナを識別するために使う
+service: chronoshub
+
+# DockerHubのイメージ名（ユーザー名/サービス名）
+image: yohei0920/chronoshub
+
+# デプロイ先サーバーのIPアドレス
+servers:
+  web:
+    - 167.179.103.252
+
+# Kamal Proxyの設定（ポート80/443で受けてコンテナに転送する）
+proxy:
+  ssl: true
+  host: tonebyte.net
+
+# DockerHubの認証情報
+registry:
+  username: yohei0920
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+
+# Dockerイメージのビルド設定
+builder:
+  arch: amd64
+
+# 本番環境の環境変数
+env:
+  clear:
+    RAILS_ENV: production
+    RAILS_LOG_TO_STDOUT: "true"
+    RAILS_SERVE_STATIC_FILES: "true"
+    DB_HOST: 127.0.0.1
+  secret:
+    - SECRET_KEY_BASE
+    - POSTGRES_USER
+    - CHRONOS_HUB_DATABASE_PASSWORD
