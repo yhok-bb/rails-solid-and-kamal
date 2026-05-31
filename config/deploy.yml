@@ -8,10 +8,7 @@ image: yohei0920/chronoshub
 # アプリとDBを同じDockerネットワーク(chronoshub)に接続する
 servers:
   web:
-    hosts:
-      - 167.179.103.252
-    options:
-      network: chronoshub
+    - 167.179.103.252
 
 # Kamal Proxyの設定（ポート80/443で受けてコンテナに転送する）
 proxy:
@@ -51,8 +48,6 @@ accessories:
     image: postgres:16-alpine
     host: 167.179.103.252
     port: 5432
-    options:
-      network: chronoshub
     env:
       clear:
         POSTGRES_DB: chronos_hub_production
