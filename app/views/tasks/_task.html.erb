@@ -7,4 +7,10 @@
     <strong class="block font-medium mb-1">Body:</strong>
     <%= task.body %>
   </div>
+  <% if task.image.attached? %>
+    <div>
+      <strong class="block font-medium mb-1">Image:</strong>
+      <%= image_tag task.image, class: "max-w-sm" %>
+    </div>
+  <% end %>
 </div>
