@@ -13,6 +13,7 @@ cloudflare_r2:
   region: auto
   bucket: <%= Rails.application.credentials.dig(:r2, :bucket) %>
   endpoint: <%= Rails.application.credentials.dig(:r2, :endpoint) %>
+  upload: { checksum_algorithm: nil }
 
 # Use bin/rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:
