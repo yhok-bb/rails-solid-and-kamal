@@ -1,2 +1,5 @@
 require "aws-sdk-s3"
-Aws.config.update(http_checksum_validation: false)
+Aws.config.update(
+  request_checksum_calculation: "when_required",
+  response_checksum_validation: "when_required"
+)
