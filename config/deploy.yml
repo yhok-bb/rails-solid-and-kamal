@@ -9,11 +9,14 @@ image: yohei0920/chronoshub
 servers:
   web:
     - 167.179.103.252
+    - 108.61.126.182
 
 # Kamal Proxyの設定（ポート80/443で受けてコンテナに転送する）
 proxy:
-  ssl: true
   host: tonebyte.net
+  ssl:
+    certificate_pem: CLOUDFLARE_CERT
+    private_key_pem: CLOUDFLARE_KEY
 
 # DockerHubの認証情報
 registry:
@@ -42,6 +45,8 @@ env:
     - POSTGRES_USER
     - POSTGRES_PASSWORD
     - RAILS_MASTER_KEY
+    - CLOUDFLARE_CERT
+    - CLOUDFLARE_KEY
 
 # Kamalが管理する周辺サービス（DBなど）
 accessories:
