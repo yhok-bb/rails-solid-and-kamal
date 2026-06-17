@@ -1,2 +1,2 @@
 #!/bin/sh
-kamal app exec 'bin/rails db:migrate'
+kamal app exec --hosts=167.179.103.252 'bin/rails db:migrate'

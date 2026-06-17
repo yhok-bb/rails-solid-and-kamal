@@ -39,7 +39,7 @@ env:
     RAILS_ENV: production
     RAILS_LOG_TO_STDOUT: "true"
     RAILS_SERVE_STATIC_FILES: "true"
-    DB_HOST: chronoshub-postgres # アクセサリのコンテナ名で接続
+    DB_HOST: 167.179.103.252
   secret:
     - SECRET_KEY_BASE
     - POSTGRES_USER
