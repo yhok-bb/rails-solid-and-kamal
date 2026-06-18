@@ -8,8 +8,12 @@ image: yohei0920/chronoshub
 # アプリとDBを同じDockerネットワーク(chronoshub)に接続する
 servers:
   web:
-    - 167.179.103.252
-    - 108.61.126.182
+    hosts:
+      - 167.179.103.252
+      - 108.61.126.182
+    env:
+      clear:
+        DB_HOST: 10.25.96.3
 
 # Kamal Proxyの設定（ポート80/443で受けてコンテナに転送する）
 proxy:
