@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   root "tasks#index"
 
   get '/debug/headers', to: 'debug#headers'
+  get '/debug/session', to: 'debug#session_check'
 end
