@@ -1,4 +1,6 @@
 class DebugController < ApplicationController
+  allow_unauthenticated_access
+
   def headers
     render json: request.headers.env.select { |k, _| k.start_with?('HTTP_') }
   end
