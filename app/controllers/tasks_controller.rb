@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[ show edit update destroy ]
+  before_action :set_task, only: %i[ show edit update destroy like ]
 
   # GET /tasks or /tasks.json
   def index
@@ -56,6 +56,12 @@ class TasksController < ApplicationController
       format.html { redirect_to tasks_path, notice: "Task was successfully destroyed.", status: :see_other }
       format.json { head :no_content }
     end
+  end
+
+  # POST /tasks/1/like
+  def like
+    @task.update(likes_count: @task.likes_count + 1)
+    render plain: "likes_count: #{@task.reload.likes_count}\n"
   end
 
   private
