@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy like ]
+  allow_unauthenticated_access only: %i[ like ]
 
   # GET /tasks or /tasks.json
   def index
