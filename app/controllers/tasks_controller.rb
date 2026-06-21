@@ -62,7 +62,7 @@ class TasksController < ApplicationController
 
   # POST /tasks/1/like
   def like
-    @task.update(likes_count: @task.likes_count + 1)
+    @task.increment!(:likes_count)
     render plain: "likes_count: #{@task.reload.likes_count}\n"
   end
 
